@@ -1,11 +1,17 @@
 import { useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 
 export default function Navbar(): JSX.Element {
 	const [currentPage, setCurrentPage] = useState<string>('Shop')
-	const clickHandler = useCallback((_, { name }) => {
-		setCurrentPage(name)
-	}, [])
+	const history = useHistory()
+	const clickHandler = useCallback(
+		(_, { name }) => {
+			setCurrentPage(name)
+			history.push(`/${name.toLowerCase()}`)
+		},
+		[history]
+	)
 	return (
 		<Menu pointing secondary>
 			<Menu.Item
