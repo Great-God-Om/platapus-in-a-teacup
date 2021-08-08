@@ -6,7 +6,10 @@ import {
 	Redirect,
 } from 'react-router-dom'
 import { Loader } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+import './App.scss'
+
+import Footer from '@components/Footer'
+import Navbar from '@components/Navbar'
 
 const Home = React.lazy(() => import('@pages/Home'))
 const About = React.lazy(() => import('@pages/About'))
@@ -16,19 +19,23 @@ const Contact = React.lazy(() => import('@pages/Contact'))
 
 export default function App() {
 	return (
-		<Router>
-			<React.Suspense fallback={<Loader></Loader>}>
-				<Switch>
-					<Route path="/shop" exact component={Home} />
-					<Route path="/about" exact component={About} />
-					<Route path="/shipping" exact component={Shipping} />
-					<Route path="/faq" exact component={Faq} />
-					<Route path="/contact" exact component={Contact} />
-					<Route path="/" exact>
-						<Redirect to="/shop" />
-					</Route>
-				</Switch>
-			</React.Suspense>
-		</Router>
+		<div id="main">
+			<Navbar />
+			<Router>
+				<React.Suspense fallback={<Loader></Loader>}>
+					<Switch>
+						<Route path="/shop" exact component={Home} />
+						<Route path="/about" exact component={About} />
+						<Route path="/shipping" exact component={Shipping} />
+						<Route path="/faq" exact component={Faq} />
+						<Route path="/contact" exact component={Contact} />
+						<Route path="/" exact>
+							<Redirect to="/shop" />
+						</Route>
+					</Switch>
+				</React.Suspense>
+			</Router>
+			<Footer />
+		</div>
 	)
 }

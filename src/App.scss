@@ -1,0 +1,10 @@
+@import url('semantic-ui-css/semantic.min.css');
+* {
+	box-sizing: border-box;
+}
+
+#main {
+	display: grid;
+	grid-template-rows: min-content auto min-content;
+	min-height: 100vh;
+}
