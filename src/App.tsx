@@ -20,8 +20,8 @@ const Contact = React.lazy(() => import('@pages/Contact'))
 export default function App() {
 	return (
 		<div id="main">
-			<Navbar />
 			<Router>
+				<Navbar />
 				<React.Suspense fallback={<Loader></Loader>}>
 					<Switch>
 						<Route path="/shop" exact component={Home} />
