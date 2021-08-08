@@ -27,7 +27,7 @@ export default function Carousel({ items }: ICarouselProps) {
 					}
 				})
 
-				// Wait for Image to Load Later will make the image return a placeholder
+				// Wait for Image to Load: Later will make the image return a placeholder
 				setTimeout(() => {
 					imageRef.current?.classList.remove('inactive')
 					imageRef.current?.classList.add('active')
