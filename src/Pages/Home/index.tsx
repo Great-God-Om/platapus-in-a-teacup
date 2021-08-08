@@ -3,7 +3,7 @@ export default function Home() {
 	return (
 		<div id="home">
 			<Carousel
-				items={Array(100)
+				items={Array(100000)
 					.fill('')
 					.map(
 						(_, idx) =>

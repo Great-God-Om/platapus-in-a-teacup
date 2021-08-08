@@ -7,18 +7,32 @@ interface ICarouselProps {
 	items: string[]
 }
 
+const INTERVAL = 900
+
 export default function Carousel({ items }: ICarouselProps) {
 	const [current, setcurrent] = useState<number>(0)
+	const imageRef = useRef<HTMLImageElement>(null)
 
 	const handleClick = useCallback(
 		e => {
-			setcurrent(prev => {
-				if (e.target.dataset.dir === 'back')
-					return prev - 1 + (items.length % items.length)
-				else {
-					return (prev + 1) % items.length
-				}
-			})
+			imageRef.current?.classList.remove('active')
+			imageRef.current?.classList.add('inactive')
+
+			setTimeout(() => {
+				setcurrent(prev => {
+					if (e.target.dataset.dir === 'back')
+						return prev - 1 + (items.length % items.length)
+					else {
+						return (prev + 1) % items.length
+					}
+				})
+
+				// Wait for Image to Load Later will make the image return a placeholder
+				setTimeout(() => {
+					imageRef.current?.classList.remove('inactive')
+					imageRef.current?.classList.add('active')
+				}, INTERVAL / 2)
+			}, INTERVAL / 2)
 		},
 		[items.length]
 	)
@@ -27,15 +41,13 @@ export default function Carousel({ items }: ICarouselProps) {
 			<div className="left-arrow" data-dir="back" onClick={handleClick}>
 				<BiLeftArrow />
 			</div>
-			{items.map((item, idx) => (
-				<img
-					key={idx}
-					src={item}
-					loading="lazy"
-					alt="News on new products"
-					className={current === idx ? 'slide active' : 'slide'}
-				/>
-			))}
+			<img
+				ref={imageRef}
+				src={items[current]}
+				loading="lazy"
+				className="slide"
+				alt="News on new products"
+			/>
 			<div
 				className="right-arrow"
 				data-dir="forward"
