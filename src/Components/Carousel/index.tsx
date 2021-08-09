@@ -7,7 +7,7 @@ interface ICarouselProps {
 	items: string[]
 }
 
-const INTERVAL = 900
+const INTERVAL = 500
 
 export default function Carousel({ items }: ICarouselProps) {
 	const [current, setcurrent] = useState<number>(0)
@@ -15,24 +15,25 @@ export default function Carousel({ items }: ICarouselProps) {
 
 	const handleClick = useCallback(
 		e => {
-			imageRef.current?.classList.remove('active')
-			imageRef.current?.classList.add('inactive')
+			if (imageRef.current) {
+				imageRef.current?.classList.remove('active')
+				imageRef.current?.classList.add('inactive')
+				imageRef.current.getAnimations()[0].onfinish = () => {
+					setcurrent(prev => {
+						if (e.target.dataset.dir === 'back')
+							return prev - 1 + (items.length % items.length)
+						else {
+							return (prev + 1) % items.length
+						}
+					})
 
-			setTimeout(() => {
-				setcurrent(prev => {
-					if (e.target.dataset.dir === 'back')
-						return prev - 1 + (items.length % items.length)
-					else {
-						return (prev + 1) % items.length
-					}
-				})
-
-				// Wait for Image to Load: Later will make the image return a placeholder
-				setTimeout(() => {
-					imageRef.current?.classList.remove('inactive')
-					imageRef.current?.classList.add('active')
-				}, INTERVAL / 2)
-			}, INTERVAL / 2)
+					// Wait for Image to Load: Later will make the image return a placeholder
+					setTimeout(() => {
+						imageRef.current?.classList.remove('inactive')
+						imageRef.current?.classList.add('active')
+					}, (INTERVAL * 2) / 3)
+				}
+			}
 		},
 		[items.length]
 	)
