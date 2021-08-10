@@ -1,7 +1,13 @@
 @import url('semantic-ui-css/semantic.min.css');
+
+$app-background-color: #f6f1fa;
 * {
 	box-sizing: border-box;
 }
+body {
+	background-color: $app-background-color;
+}
+
 
 #main {
 	display: grid;

@@ -64,6 +64,10 @@ $animation-interval: 500ms;
 			&:hover {
 				background-color: darken($carousel-dot-color, 20);
 			}
+
+			&.active {
+				background-color: darken($carousel-dot-color, 20);
+			}
 		}
 	}
 }

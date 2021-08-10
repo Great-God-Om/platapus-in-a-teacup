@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { Container } from 'semantic-ui-react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
-import { BsCircleFill } from 'react-icons/bs'
 import './Carousel.scss'
 
 interface ICarouselProps {
@@ -17,7 +16,7 @@ type CarouselState = {
 	target: number
 }
 
-const INTERVAL = 500
+const INTERVAL = 400
 
 const fadeout = {
 	styles: [
@@ -138,7 +137,19 @@ export default function Carousel({ items }: ICarouselProps) {
 			</div>
 			<div className="carousel-dots">
 				{items.map((_, idx) => {
-					return <div key={idx}></div>
+					return (
+						<div
+							key={idx}
+							className={
+								idx === current.active ? 'active' : ''
+							}
+							onClick={() => {
+								dispatch({
+									type: 'jump',
+									payload: idx
+								})
+							}}></div>
+					)
 				})}
 			</div>
 		</Container>
