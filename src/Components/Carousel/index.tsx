@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { Container } from 'semantic-ui-react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { BsCircleFill } from 'react-icons/bs'
 import './Carousel.scss'
 
 interface ICarouselProps {
@@ -114,18 +115,31 @@ export default function Carousel({ items }: ICarouselProps) {
 
 	return (
 		<Container fluid className="carousel">
-			<div className="left-arrow" data-dir="prev" onClick={handleClick}>
-				<BiLeftArrow />
+			<div className="carousel-display">
+				<div
+					className="left-arrow"
+					data-dir="prev"
+					onClick={handleClick}>
+					<BiLeftArrow />
+				</div>
+				<img
+					ref={imageRef}
+					src={items[current.active]}
+					loading="lazy"
+					className="slide"
+					alt="News on new products"
+				/>
+				<div
+					className="right-arrow"
+					data-dir="next"
+					onClick={handleClick}>
+					<BiRightArrow />
+				</div>
 			</div>
-			<img
-				ref={imageRef}
-				src={items[current.active]}
-				loading="lazy"
-				className="slide"
-				alt="News on new products"
-			/>
-			<div className="right-arrow" data-dir="next" onClick={handleClick}>
-				<BiRightArrow />
+			<div className="carousel-dots">
+				{items.map((_, idx) => {
+					return <div key={idx}></div>
+				})}
 			</div>
 		</Container>
 	)

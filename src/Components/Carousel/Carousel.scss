@@ -1,4 +1,5 @@
 $carousel-background: #f4dffeff;
+$carousel-dot-color: darken($carousel-background, 5);
 $animation-interval: 500ms;
 
 .carousel {
@@ -6,64 +7,63 @@ $animation-interval: 500ms;
 	color: white;
 	height: 50vh;
 	background-color: $carousel-background;
-	> .slide {
-		position: absolute;
+	> .carousel-display {
+		position: relative;
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		// &.active {
-		// 	animation-name: fadein;
-		// 	animation-fill-mode: forwards;
-		// 	animation-duration: $animation-interval;
-		// }
-		// &.inactive {
-		// 	animation-name: fadeout;
-		// 	animation-duration: $animation-interval;
-		// 	animation-fill-mode: forwards;
-		// }
+		> .slide {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		> div {
+			top: 0;
+			z-index: 2;
+			background-color: transparent;
+			padding: 0 1rem;
+			position: absolute;
+			min-height: 100%;
+			display: flex;
+			align-items: center;
+
+			&:hover {
+				background-color: rgba($color: #000000, $alpha: 0.1);
+				cursor: pointer;
+			}
+			&:active {
+				background-color: rgba($color: #000000, $alpha: 0.2);
+				transition: all 0.15s;
+			}
+			&.left-arrow {
+				left: 0;
+			}
+
+			&.right-arrow {
+				right: 0;
+			}
+		}
 	}
 
-	> div {
-		top: 0;
-		z-index: 2;
-		background-color: transparent;
-		padding: 0 1rem;
-		position: absolute;
-		min-height: 100%;
+	.carousel-dots {
+		color: $carousel-dot-color;
+		padding: 0.7rem;
+		width: 100%;
 		display: flex;
+		justify-content: center;
 		align-items: center;
 
-		&:hover {
-			background-color: rgba($color: #000000, $alpha: 0.1);
-			cursor: pointer;
-		}
-		&:active {
-			background-color: rgba($color: #000000, $alpha: 0.2);
-			transition: all 0.15s;
-		}
-		&.left-arrow {
-			left: 0;
-		}
+		div {
+			background-color: $carousel-dot-color;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			margin: 0 0.5rem;
 
-		&.right-arrow {
-			right: 0;
+			&:hover {
+				background-color: darken($carousel-dot-color, 20);
+			}
 		}
-	}
-}
-
-@keyframes fadein {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-@keyframes fadeout {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
 	}
 }
