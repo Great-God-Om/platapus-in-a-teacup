@@ -4,7 +4,10 @@ import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import './Carousel.scss'
 
 interface ICarouselProps {
-	items: string[]
+	items: {
+		src: string
+		caption: string
+	}[]
 }
 type CarouselAction = {
 	type: string
@@ -123,12 +126,14 @@ export default function Carousel({ items }: ICarouselProps) {
 				</div>
 				<img
 					ref={imageRef}
-					src={items[current.active]}
+					src={items[current.active].src}
 					loading="lazy"
 					className="slide"
 					alt="News on new products"
 				/>
-				<div className="image-caption">Balls</div>
+				<div className="image-caption">
+					{items[current.active].caption}
+				</div>
 				<div
 					className="right-arrow"
 					data-dir="next"
