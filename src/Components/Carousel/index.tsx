@@ -16,7 +16,7 @@ type CarouselState = {
 	target: number
 }
 
-const INTERVAL = 400
+const INTERVAL = 350
 
 const fadeout = {
 	styles: [
@@ -128,6 +128,7 @@ export default function Carousel({ items }: ICarouselProps) {
 					className="slide"
 					alt="News on new products"
 				/>
+				<div className="image-caption">Balls</div>
 				<div
 					className="right-arrow"
 					data-dir="next"
@@ -140,13 +141,11 @@ export default function Carousel({ items }: ICarouselProps) {
 					return (
 						<div
 							key={idx}
-							className={
-								idx === current.active ? 'active' : ''
-							}
+							className={idx === current.active ? 'active' : ''}
 							onClick={() => {
 								dispatch({
 									type: 'jump',
-									payload: idx
+									payload: idx,
 								})
 							}}></div>
 					)

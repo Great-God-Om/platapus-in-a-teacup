@@ -18,7 +18,7 @@ $animation-interval: 500ms;
 			object-fit: cover;
 		}
 
-		> div {
+		> div:not(.image-caption) {
 			top: 0;
 			z-index: 2;
 			background-color: transparent;
@@ -44,8 +44,24 @@ $animation-interval: 500ms;
 				right: 0;
 			}
 		}
-	}
+		> .image-caption {
+			position: absolute;
+			opacity: 0;
+			bottom: 0;
+			right: 0;
+			width: 100%;
+			min-height: 15%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: rgba($color: #000000, $alpha: 0.4);
+		}
 
+		&:hover > .image-caption {
+			opacity: 1;
+			transition: all 0.45s;
+		}
+	}
 	.carousel-dots {
 		color: $carousel-dot-color;
 		padding: 0.7rem;

@@ -14,7 +14,7 @@ export default function Navbar(): JSX.Element {
 		[history]
 	)
 	return (
-		<Menu pointing secondary className="navbar">
+		<Menu pointing secondary stackable className="navbar">
 			<Menu.Item
 				name="Shop"
 				onClick={clickHandler}
