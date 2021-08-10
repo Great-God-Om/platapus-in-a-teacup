@@ -11,17 +11,16 @@ $animation-interval: 500ms;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		&.active {
-			animation-name: fadein;
-			animation-direction: normal;
-			animation-fill-mode: forwards;
-			animation-duration: $animation-interval;
-		}
-		&.inactive {
-			animation-name: fadeout;
-			animation-duration: $animation-interval;
-			animation-fill-mode: forwards;
-		}
+		// &.active {
+		// 	animation-name: fadein;
+		// 	animation-fill-mode: forwards;
+		// 	animation-duration: $animation-interval;
+		// }
+		// &.inactive {
+		// 	animation-name: fadeout;
+		// 	animation-duration: $animation-interval;
+		// 	animation-fill-mode: forwards;
+		// }
 	}
 
 	> div {
