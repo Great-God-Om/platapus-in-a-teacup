@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
-import { Container } from 'semantic-ui-react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
-import './Carousel.scss'
+import styles from './Carousel.module.scss'
 
 interface ICarouselProps {
 	items: {
@@ -116,10 +115,10 @@ export default function Carousel({ items }: ICarouselProps) {
 	/* eslint-enable react-hooks/exhaustive-deps  */
 
 	return (
-		<Container fluid className="carousel">
-			<div className="carousel-display">
+		<div className={styles.carousel}>
+			<div className={styles.carousel_display}>
 				<div
-					className="left-arrow"
+					className={styles.left_arrow}
 					data-dir="prev"
 					onClick={handleClick}>
 					<BiLeftArrow />
@@ -128,25 +127,27 @@ export default function Carousel({ items }: ICarouselProps) {
 					ref={imageRef}
 					src={items[current.active].src}
 					loading="lazy"
-					className="slide"
+					className={styles.slide}
 					alt="News on new products"
 				/>
-				<div className="image-caption">
+				<div className={styles.image_caption}>
 					{items[current.active].caption}
 				</div>
 				<div
-					className="right-arrow"
+					className={styles.right_arrow}
 					data-dir="next"
 					onClick={handleClick}>
 					<BiRightArrow />
 				</div>
 			</div>
-			<div className="carousel-dots">
+			<div className={styles.carousel_dots}>
 				{items.map((_, idx) => {
 					return (
 						<div
 							key={idx}
-							className={idx === current.active ? 'active' : ''}
+							className={
+								idx === current.active ? styles.active : ''
+							}
 							onClick={() => {
 								dispatch({
 									type: 'jump',
@@ -156,6 +157,6 @@ export default function Carousel({ items }: ICarouselProps) {
 					)
 				})}
 			</div>
-		</Container>
+		</div>
 	)
 }

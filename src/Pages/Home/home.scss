@@ -1,3 +1,12 @@
-#home {
-	// grid-area: Content;
+#products {
+	margin: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	> .card {
+		// flex-grow: 1;
+		margin: 0.5rem;
+		height: min-content;
+	}
 }
