@@ -1,15 +1,13 @@
 #products {
 	margin: 2rem;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-
-	> .card {
-		margin: 0.5rem;
-		height: min-content;
-	}
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	place-items: center center;
+	column-gap: 0px;
+	row-gap: 0px;
 
 	.product {
+		margin: 1rem 1rem;
 		img {
 			max-height: 20vh;
 			object-fit: cover;

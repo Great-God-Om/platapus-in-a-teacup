@@ -11,12 +11,12 @@ export default function Home() {
 				}))}
 			/>
 			<div id="products">
-				{Array.from({ length: 10 }).map((_, idx) => (
-					<Card className="product">
+				{Array.from({ length: 12 }).map((_, idx) => (
+					<Card key={idx} className="product">
 						<Image
 							src={`https://picsum.photos/500/500?random=${idx}`}
 						/>
-						<Card.Content></Card.Content>
+						<Card.Content>Monkey</Card.Content>
 					</Card>
 				))}
 			</div>
