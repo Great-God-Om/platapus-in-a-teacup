@@ -11,26 +11,14 @@ export default function Home() {
 				}))}
 			/>
 			<div id="products">
-				<Card>
-					<Image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vets4pets.com%2Fsiteassets%2Fspecies%2Fcat%2Fcat-close-up-of-side-profile.jpg%3Fw%3D585%26scale%3Ddown&f=1&nofb=1"></Image>
-					<Card.Content></Card.Content>
-				</Card>
-				<Card>
-					<Image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vets4pets.com%2Fsiteassets%2Fspecies%2Fcat%2Fcat-close-up-of-side-profile.jpg%3Fw%3D585%26scale%3Ddown&f=1&nofb=1"></Image>
-					<Card.Content></Card.Content>
-				</Card>
-				<Card>
-					<Image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vets4pets.com%2Fsiteassets%2Fspecies%2Fcat%2Fcat-close-up-of-side-profile.jpg%3Fw%3D585%26scale%3Ddown&f=1&nofb=1"></Image>
-					<Card.Content></Card.Content>
-				</Card>
-				<Card>
-					<Image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vets4pets.com%2Fsiteassets%2Fspecies%2Fcat%2Fcat-close-up-of-side-profile.jpg%3Fw%3D585%26scale%3Ddown&f=1&nofb=1"></Image>
-					<Card.Content></Card.Content>
-				</Card>
-				<Card>
-					<Image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vets4pets.com%2Fsiteassets%2Fspecies%2Fcat%2Fcat-close-up-of-side-profile.jpg%3Fw%3D585%26scale%3Ddown&f=1&nofb=1"></Image>
-					<Card.Content></Card.Content>
-				</Card>
+				{Array.from({ length: 10 }).map((_, idx) => (
+					<Card className="product">
+						<Image
+							src={`https://picsum.photos/500/500?random=${idx}`}
+						/>
+						<Card.Content></Card.Content>
+					</Card>
+				))}
 			</div>
 		</div>
 	)
