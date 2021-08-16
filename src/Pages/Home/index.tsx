@@ -33,7 +33,7 @@ export default function Home() {
 				{products.map((product, idx) => (
 					<Card key={idx} className="product">
 						<Image
-							src={`https://picsum.photos/500/500?random=${idx}`}
+							src={product.img_src}
 						/>
 						<Card.Content>
 							<Card.Header>{product.name}</Card.Header>
