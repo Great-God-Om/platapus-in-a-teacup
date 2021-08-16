@@ -29,7 +29,7 @@ export default function App() {
 						<Route path="/shipping" exact component={Shipping} />
 						<Route path="/faq" exact component={Faq} />
 						<Route path="/contact" exact component={Contact} />
-						<Route path="/" exact>
+						<Route path="/">
 							<Redirect to="/shop" />
 						</Route>
 					</Switch>
