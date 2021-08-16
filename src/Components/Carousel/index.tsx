@@ -125,13 +125,13 @@ export default function Carousel({ items }: ICarouselProps) {
 				</div>
 				<img
 					ref={imageRef}
-					src={items[current.active].src}
+					src={items[current.active]?.src}
 					loading="lazy"
 					className={styles.slide}
 					alt="News on new products"
 				/>
 				<div className={styles.image_caption}>
-					{items[current.active].caption}
+					{items[current.active]?.caption}
 				</div>
 				<div
 					className={styles.right_arrow}
