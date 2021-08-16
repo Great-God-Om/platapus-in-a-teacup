@@ -7,6 +7,7 @@ $app-background-color: #f1e8f8;
 }
 body {
 	background-color: $app-background-color;
+	overflow: auto;
 }
 
 #main {

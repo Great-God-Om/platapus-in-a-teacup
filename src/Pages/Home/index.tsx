@@ -1,7 +1,18 @@
 import Carousel from '@components/Carousel'
-import { Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image } from 'semantic-ui-react'
 import './home.scss'
+import firebase from '../../Firebase/firebase'
+import { useEffect, useState } from 'react'
 export default function Home() {
+	const [products, setProducts] = useState<any[]>([])
+	useEffect(() => {
+		return firebase
+			.firestore()
+			.collection('products')
+			.onSnapshot(col => {
+				setProducts(col.docs.map(doc => doc.data()))
+			})
+	}, [])
 	return (
 		<div id="home">
 			<Carousel
@@ -11,12 +22,22 @@ export default function Home() {
 				}))}
 			/>
 			<div id="products">
-				{Array.from({ length: 12 }).map((_, idx) => (
+				{products.map((product, idx) => (
 					<Card key={idx} className="product">
 						<Image
 							src={`https://picsum.photos/500/500?random=${idx}`}
 						/>
-						<Card.Content>Monkey</Card.Content>
+						<Card.Content>
+							<Card.Header>{product.name}</Card.Header>
+							<Card.Description>
+								{product.description}
+							</Card.Description>
+						</Card.Content>
+						<Card.Content>
+							<a href={product.url}>
+								<Button fluid>View on Etsy</Button>
+							</a>
+						</Card.Content>
 					</Card>
 				))}
 			</div>
