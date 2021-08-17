@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
-import styles from './Carousel.module.scss'
+import './Carousel.scss'
 
 interface ICarouselProps {
 	items: {
@@ -115,10 +115,10 @@ export default function Carousel({ items }: ICarouselProps) {
 	/* eslint-enable react-hooks/exhaustive-deps  */
 
 	return (
-		<div className={styles.carousel}>
-			<div className={styles.carousel_display}>
+		<div className="carousel">
+			<div className="carousel_display">
 				<div
-					className={styles.left_arrow}
+					className="control left_arrow"
 					data-dir="prev"
 					onClick={handleClick}>
 					<BiLeftArrow />
@@ -127,27 +127,25 @@ export default function Carousel({ items }: ICarouselProps) {
 					ref={imageRef}
 					src={items[current.active]?.src}
 					loading="lazy"
-					className={styles.slide}
+					className="slide"
 					alt="News on new products"
 				/>
-				<div className={styles.image_caption}>
+				<div className="image_caption">
 					{items[current.active]?.caption}
 				</div>
 				<div
-					className={styles.right_arrow}
+					className="control right_arrow"
 					data-dir="next"
 					onClick={handleClick}>
 					<BiRightArrow />
 				</div>
 			</div>
-			<div className={styles.carousel_dots}>
+			<div className="carousel_dots">
 				{items.map((_, idx) => {
 					return (
 						<div
 							key={idx}
-							className={
-								idx === current.active ? styles.active : ''
-							}
+							className={idx === current.active ? 'active' : ''}
 							onClick={() => {
 								dispatch({
 									type: 'jump',

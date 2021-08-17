@@ -1,0 +1,92 @@
+@import '/src/App.scss';
+$carousel-background: #f4dffeff;
+$carousel-dot-color: darken($carousel-background, 5);
+$carousel-dot-size: 1rem;
+$carousel-caption-color: white;
+$carousel-caption-background: rgba(
+	$color: #000000,
+	$alpha: 0.4,
+);
+// carousel takes height of it's container
+.carousel {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	.carousel_display {
+		position: relative;
+		width: inherit;
+		height: inherit;
+		flex: 2 2 90%;
+		overflow: hidden;
+		.control {
+			position: absolute;
+			min-height: 100%;
+			top: 0;
+			z-index: 1;
+			display: flex;
+			place-items: center center;
+			color: white;
+			padding: 0rem 1rem;
+			&:hover {
+				background-color: rgba($color: #000000, $alpha: 0.1);
+				cursor: pointer;
+			}
+			&:active {
+				background-color: rgba($color: #000000, $alpha: 0.2);
+				transition: all 0.15s;
+			}
+
+			&.left_arrow {
+				left: 0;
+			}
+			&.right_arrow {
+				right: 0;
+			}
+		}
+		.image_caption {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			padding: 1rem 0;
+			color: $carousel-caption-color;
+			background-color: $carousel-caption-background;
+			opacity: 0;
+			flex: 1 1 10%;
+		}
+		&:hover > .image_caption {
+			opacity: 1;
+			transition: all 0.45s;
+		}
+		.slide {
+			height: inherit;
+			width: inherit;
+			background-color: #000000;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+	.carousel_dots {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		div {
+			width: $carousel-dot-size;
+			height: $carousel-dot-size;
+			background-color: $carousel-dot-color;
+			border-radius: 50%;
+			margin: 0 0.5rem;
+
+			&:hover {
+				background-color: darken($carousel-dot-color, 20);
+				transition: linear 0.2s;
+			}
+
+			&.active {
+				background-color: darken($carousel-dot-color, 10);
+			}
+		}
+	}
+}
