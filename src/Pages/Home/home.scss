@@ -11,11 +11,10 @@
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	place-items: center center;
-	column-gap: 0px;
-	row-gap: 0px;
+	column-gap: 1rem;
+	row-gap: 1rem;
 
 	.product {
-		margin: 1rem 1rem;
 		img {
 			max-height: 20vh;
 			object-fit: cover;

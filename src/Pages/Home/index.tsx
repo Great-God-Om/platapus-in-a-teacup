@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Carousel from '@components/Carousel'
+import Skeleton from '@components/Skeleton/skeleton'
 import { Button, Card, Image } from 'semantic-ui-react'
 import './home.scss'
 import firebase from 'Firebase/firebase'
@@ -39,33 +40,38 @@ export default function Home() {
 	return (
 		<div id="home">
 			<div id="carousel">
-				{news.length !== 0 ? (
-					<Carousel items={news} />
-				) : (
-					<div className="skeleton">No Items in News</div>
-				)}
+				{news.length !== 0 ? <Carousel items={news} /> : <Skeleton />}
 			</div>
 			<div id="products">
-				{products.length !== 0 ? (
-					products.map((product, idx) => (
-						<Card key={idx} className="product">
-							<Image src={product.img_src} />
-							<Card.Content>
-								<Card.Header>{product.name}</Card.Header>
-								<Card.Description>
-									{product.description}
-								</Card.Description>
-							</Card.Content>
-							<Card.Content>
-								<a href={product.url}>
-									<Button fluid>View on Etsy</Button>
-								</a>
-							</Card.Content>
-						</Card>
-					))
-				) : (
-					<div></div>
-				)}
+				{products.length !== 0
+					? products.map((product, idx) => (
+							<Card key={idx} className="product">
+								<Image src={product.img_src} />
+								<Card.Content>
+									<Card.Header>{product.name}</Card.Header>
+									<Card.Description>
+										{product.description}
+									</Card.Description>
+								</Card.Content>
+								<Card.Content>
+									<a href={product.url}>
+										<Button fluid>View on Etsy</Button>
+									</a>
+								</Card.Content>
+							</Card>
+					  ))
+					: Array.from(
+							{
+								length: 6,
+							},
+							(_, idx) => (
+								<div
+									key={idx}
+									style={{ width: '100%', height: '25vh' }}>
+									<Skeleton />
+								</div>
+							)
+					  )}
 			</div>
 		</div>
 	)
